@@ -7,4 +7,4 @@ class CreateTasks < ActiveRecord::Migration[5.2]
     end
   end
 end
-rails g migration AddTitleToMessages title:string
+
