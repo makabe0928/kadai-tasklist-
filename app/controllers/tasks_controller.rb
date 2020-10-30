@@ -3,7 +3,7 @@ class TasksController < ApplicationController
  before_action :correct_user, only: [:destroy]
 
 def index
-  @tasks=Task.all
+   @tasks=current_user.tasks.order(id: :desc)
 end
 
 def show
@@ -16,12 +16,11 @@ end
 
   def create
     @task=current_user.tasks.build(task_params)
-    #@task=Task.new(task_params)
     if @task.save
       flash[:success] = 'Taskが正常に作成されました'
       redirect_to @task
     else
-       @task = current_user.tasks.order(id: :desc).page(params[:page])
+       @task = Task.new(task_params)
       flash.now[:danger] = 'Taskが作成されませんでした'
       render :new
     end
@@ -48,7 +47,7 @@ end
     @task.destroy
 
     flash[:success] = 'Taskは正常に削除されました'
-    redirect_back(fallback_location: root_path)
+    redirect_to tasks_url
    
   end
   
