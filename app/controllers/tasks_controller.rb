@@ -7,7 +7,6 @@ def index
 end
 
 def show
-  @task = Task.find(params[:id])
 end
 
 def new
@@ -31,8 +30,6 @@ end
   end
 
   def update
-     @task = Task.find(params[:id])
-
     if @task.update(task_params)
       flash[:success] = 'Taskは正常に更新されました'
       redirect_to @task
@@ -43,7 +40,6 @@ end
   end
 
   def destroy
-    @task= Task.find(params[:id])
     @task.destroy
 
     flash[:success] = 'Taskは正常に削除されました'
