@@ -19,7 +19,6 @@ end
       flash[:success] = 'Taskが正常に作成されました'
       redirect_to @task
     else
-       @task = Task.new(task_params)
       flash.now[:danger] = 'Taskが作成されませんでした'
       render :new
     end
